@@ -19,8 +19,8 @@ jobs:
         shell: powershell
         run: |
           Copy-Item `
-            -Path "$env:GITHUB_WORKSPACE\source\pipeline.py" `
-            -Destination "C:\Deployments\DEV\pipeline.py" `
+            -Path "$env:GITHUB_WORKSPACE\source\" `
+            -Destination "C:\Deployments\DEV\" `
             -Force
 
   deploy-prod:
@@ -35,6 +35,6 @@ jobs:
         shell: powershell
         run: |
           Copy-Item `
-            -Path "$env:GITHUB_WORKSPACE\source\pipeline.py" `
-            -Destination "C:\Deployments\PROD\pipeline.py" `
+            -Path "$env:GITHUB_WORKSPACE\source\" `
+            -Destination "C:\Deployments\PROD\" `
             -Force
