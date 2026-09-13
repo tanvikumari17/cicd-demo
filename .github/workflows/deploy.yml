@@ -1,0 +1,42 @@
+name: CI CD Pipeline Demo
+
+on:
+ push:
+ branches:x
+ - dev
+ - master
+
+jobs:
+
+ deploy-dev:
+ if: github.ref == 'refs/heads/dev'
+ runs-on: self-hosted
+
+ steps:
+ - name: Checkout Code
+ uses: actions/checkout@v4
+
+ - name: Deploy to DEV
+ shell: powershell
+ run: |
+ Copy-Item `
+ -Path "$env:GITHUB_WORKSPACE\source\pipeline.py" `
+ -Destination "C:\Deployments\DEV\pipeline.py" `
+ -Force
+
+
+ deploy-prod:
+ if: github.ref == 'refs/heads/master'
+ runs-on: self-hosted
+
+ steps:
+ - name: Checkout Code
+ uses: actions/checkout@v4
+
+ - name: Deploy to PROD
+ shell: powershell
+ run: |
+ Copy-Item `
+ -Path "$env:GITHUB_WORKSPACE\source\pipeline.py" `
+ -Destination "C:\Deployments\PROD\pipeline.py" `
+ -Force
