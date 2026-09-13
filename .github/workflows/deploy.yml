@@ -15,12 +15,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Deploy to DEV
+      - name: Deploy all files to DEV
         shell: powershell
         run: |
           Copy-Item `
-            -Path "$env:GITHUB_WORKSPACE\source\" `
+            -Path "$env:GITHUB_WORKSPACE\source\*" `
             -Destination "C:\Deployments\DEV\" `
+            -Recurse `
             -Force
 
   deploy-prod:
@@ -31,10 +32,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Deploy to PROD
+      - name: Deploy all files to PROD
         shell: powershell
         run: |
           Copy-Item `
-            -Path "$env:GITHUB_WORKSPACE\source\" `
+            -Path "$env:GITHUB_WORKSPACE\source\*" `
             -Destination "C:\Deployments\PROD\" `
+            -Recurse `
             -Force
