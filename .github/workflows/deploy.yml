@@ -2,7 +2,7 @@ name: CI CD Pipeline Demo
 
 on:
  push:
- branches:x
+ branches:
  - dev
  - master
 
@@ -19,7 +19,7 @@ jobs:
  - name: Deploy to DEV
  shell: powershell
  run: |
- Copy-Item `
+ Copy-Item 
  -Path "$env:GITHUB_WORKSPACE\source\pipeline.py" `
  -Destination "C:\Deployments\DEV\pipeline.py" `
  -Force
